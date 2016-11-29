@@ -1,0 +1,29 @@
+SET FOREIGN_KEY_CHECKS = 0;
+DROP TABLE IF EXISTS Users;
+DROP TABLE IF EXISTS History;
+DROP TABLE IF EXISTS CITIES;
+SET FOREIGN_KEY_CHECKS = 1;
+CREATE TABLE Users (
+	userId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	emailAddress VARCHAR(255) UNIQUE,
+	password VARCHAR (255),
+	firstname VARCHAR (255),
+	lastname VARCHAR (255)
+);
+
+CREATE TABLE History (
+	historyId INT NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	term VARCHAR(255),
+	termDate Timestamp,
+	userId int,
+	CONSTRAINT history_uidfk
+	FOREIGN KEY (userId)
+	REFERENCES Users (userId)
+	ON DELETE CASCADE
+);
+
+CREATE TABLE Cities (
+	cityId int NOT NULL PRIMARY KEY AUTO_INCREMENT,
+	population int,
+	city VARCHAR(255)
+);
